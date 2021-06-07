@@ -1,47 +1,47 @@
 # Spring-Native-Study
 
-### Descrição do Projeto
-🚀 Projeto que constrói uma api que realiza um CRUD de forma reativa com MongoDB e utiliza a nova spec do Spring o Spring Native eque compila a aplicação e executa como imagem nativa junto ao GraalVM
+### Project description
+🚀 Project that builds an api that performs a CRUD in a reactive way with MongoDB and uses the new Spring spec, the Spring Native and that compiles the application and runs as a native image with GraalVM
 
 
-## Instalação ##
+## Installation ##
 
-É necessário instalar alguns itens: 
-- Docker 
+It is necessary to install some items:
+- Docker
 - Java 11
 - Maven
 - GraalVM
 
-###  Native Image
-Native image é uma tecnilogia que permite compilar de forma antecipada o código Java e torná-lo um executável. Esse executável contém classes do aplicativo, classes de suas dependências, classes de bibliotecas de tempo de execução e o código nativo vinculado a JDK.  Após o processo de compilação, ele constrói o executável para o sistema operacional, esse processo se chama construção de imagem. Linguagens baseadas na JVM tem essa capacidade como, Java, Scala, Clojure e Kotlin.
+### Native Image
+Native image is a technology that allows you to compile Java code in advance and make it executable. This executable contains application classes, their dependency classes, runtime library classes, and native code linked to the JDK. After the build process, it builds the executable for the operating system, this process is called image build. JVM-based languages have this capability like Java, Scala, Clojure and Kotlin.
 
 ### Spring Native
-Em Março de 2021, o Spring liberou uma versão ainda experimental a comunidade o seu módulo nativo, o Spring-Native. Tendo em vista que seus concorrentes já conseguem ter uma integração mais flúida com o GraalVM, o spring precisou correr atrás do Quarkus e do Micronaut para conseguir tornar sua stack compatível com imagens nativas.
+In March 2021, Pivotal released a still-experimental version to the community of its native module, Spring-Native. Given that its competitors are already able to have a more fluid integration with GraalVM, spring had to chase after Quarkus and Micronaut to be able to make its stack compatible with native images.
 
-O Spring Native fornece a carga de trabalho ideal para computação em containers e Kubernetes. Utilizar imagem nativa forte uma inicialização instântanea, desempenho máximo instântaneo e consumo de memória reduzido.
+Spring Native provides the ideal workload for computing in containers and Kubernetes. Use strong native image an instant boot, instant peak performance and reduced memory consumption.
 
-Como tudo não é perfeito, é preciso entender que há etapas desse processo que precisam ser melhoradas, como p processo de geração de uma imagem nativa é muito pesado e demorado.
-
-
-### Passos Necessários
-
-Depois de configurar todo o ambiente, é necessário colocar as dependências necessárias para o projeto. Feito isso e você estruturando os endpoints que serão utilizados e o que será persistido, precisamos executar alguns comandos do maven para gerar o empacotamento do projeto. O primeiro comando a ser executado é o: mvn clean package spring-boot:build-image
-
-Nesse projeto nos temos um plugin do maven que são gerados metadados necessários para o GraalVM no momento de compilação, o Spring  utiliza o paketo build. O paketo é um buildpack que transforma o código construiído em uma imagem que pode ser executado de qualquer forma. muito utilizado para execução de códigos em cloud.
-
-Após ter gerado a imagem, será necessário executar o seguinte comando: mvn clean package spring-boot:build-image -Pspring-native,build-docker-image -DskipTests Dependendo de quanto de memória você tem disponível ou quanto de memória você tem para o startup do seu Docker, esse processo poderá falhar por falta de memória ou demorar até gerar a imagem.
-
-Esse comando irá gerar uma imagem nativa GraalVM para realizar o build do aplicativo como um executável nativo.
-
-Após a execução do comando que gera a imagem nativa da aplicação precisaremos subir o nosso banco de dados, nesse exemplo estamos utilizando o MongoDB, dessa forma o comando que será executado será: docker-compose up mongodb
+As everything is not perfect, it is necessary to understand that there are steps in this process that need to be improved, as the process of generating a native image is very heavy and time-consuming.
 
 
-Por último iremos rodar nossa aplicação reativa/Nativa com SpringWebFlux e Spring Native executando o seguinte comando: docker run spring-native-demo
+### Necessary Steps
+
+After configuring the entire environment, it is necessary to place the necessary dependencies for the project. Once this is done and you are structuring the endpoints that will be used and what will be persisted, we need to run some maven commands to generate the project's packaging. The first command to run is: mvn clean package spring-boot:build-image
+
+In this project we have a maven plugin which generates necessary metadata for the GraalVM at compile time, Spring uses the build package. paketo is a buildpack that transforms the built code into an image that can be executed in any way. widely used for code execution in the cloud.
+
+Once you have generated the image, you will need to run the following command: mvn clean package spring-boot:build-image -Pspring-native,build-docker-image -DskipTests Depending on how much memory you have available or how much memory you have for the startup of your Docker, this process may fail due to lack of memory or take time to generate the image.
+
+This command will generate a native GraalVM image to build the application as a native executable.
+
+After executing the command that generates the application's native image, we will need to upload our database, in this example we are using MongoDB, so the command that will be executed will be: docker-compose up mongodb
 
 
-### Tecnologias
+Finally we will run our reactive/native application with SpringWebFlux and Spring Native by executing the following command: docker run spring-native-demo
 
-Para a realização do projeto foram utilizada as seguintes tecnologias: 
+
+### Technologies
+
+The following technologies were used to carry out the project:
 - Java 11
 - Maven
 - SpringBoot
